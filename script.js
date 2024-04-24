@@ -26,9 +26,9 @@ function operate(firstNum, operator, secondNum) {
         case "-":
             return subtract(firstNum, secondNum);
         case "*":
-            return add(firstNum, secondNum);
+            return multiply(firstNum, secondNum);
         case "/":
-            return add(firstNum, secondNum);   
+            return divide(firstNum, secondNum);   
         default:
             console.log("Error: either the operator or the numbers are not valid");
     };
