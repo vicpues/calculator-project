@@ -16,3 +16,9 @@ function multiply(a, b) {
 function divide(a, b) {
     return a / b
 }
+
+
+const firstNum = 3;
+const secondNum = 4;
+const operator = "+";
+
