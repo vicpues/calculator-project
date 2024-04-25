@@ -109,7 +109,7 @@ function clearScreens() {
 
 function updateOperation() {
     let upperScreenArr = upperScreen.textContent.split(" ");
-    return {
+    operation = {
         firstNum: Number(upperScreenArr[0]),
         operator: upperScreenArr[1],
         secondNum: Number(lowerScreen.textContent),
