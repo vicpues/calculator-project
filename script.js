@@ -73,20 +73,15 @@ function clickHandler(e) {
     switch (button.type) {
         
         case "number":
-            if (operation.hasEquals) {
-                clearScreens();
-            }
-            lowerScreen.textContent += button.emits;
+            drawNumberOutput(button.emits);
             break;
 
         case "operator":
-
-            upperScreen.textContent = `${lowerScreen.textContent} ${button.emits}`;
-            lowerScreen.textContent = "";
+            drawOperatorOutput(button.emits);
             break;
 
         case "backspace":
-            lowerScreen.textContent = lowerScreen.textContent.slice(0, -1);
+            drawBackspaceOutput();
             break;
 
         case "clear":
@@ -94,10 +89,41 @@ function clickHandler(e) {
             break;
 
         case "equals":
-            upperScreen.textContent = `${operation.firstNum} ${operation.operator} ${operation.secondNum} ${button.emits}`
-            lowerScreen.textContent = operate(operation.firstNum, operation.operator, operation.secondNum);
+            drawEqualsOutput(button.emits);
             break;
     };
+}
+
+
+function drawNumberOutput(text) {
+    if (operation.hasEquals) {
+        clearScreens();
+    }
+    lowerScreen.textContent += text;
+}
+
+
+function drawOperatorOutput(text) {
+    upperScreen.textContent = `${lowerScreen.textContent} ${text}`;
+    lowerScreen.textContent = "";
+}
+
+
+function drawBackspaceOutput() {
+    lowerScreen.textContent = lowerScreen.textContent.slice(0, -1);
+}
+
+
+function drawEqualsOutput(text) {
+    upperScreen.textContent = 
+        `${operation.firstNum} ` +
+        `${operation.operator} ` +
+        `${operation.secondNum} ` +
+        `${text} `
+    lowerScreen.textContent = operate(
+        operation.firstNum,
+        operation.operator,
+        operation.secondNum);
 }
 
 
