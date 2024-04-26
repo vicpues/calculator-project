@@ -33,7 +33,7 @@ function clickHandler(e) {
         
         
 function numberInput(number) {
-    if (operation.result) {
+    if (operation.result !== null) {
         clearScreens();
     };
     
@@ -51,14 +51,14 @@ function numberInput(number) {
 
 function operatorInput(operator) {
     // Case: There is a result on screen
-    if (operation.result) {
+    if (operation.result !== null) {
         updateOperation({
             firstNum: operation.result,
             secondNum: null,
             result: null,
         });
     // Case: There is a firstNum, an operator and a typed number but no result
-    } else if (operation.operator && parseLowerScreen()) {
+    } else if (operation.operator && parseLowerScreen() !== null) {
         updateOperation({
             secondNum: parseLowerScreen(),
         })
@@ -69,13 +69,17 @@ function operatorInput(operator) {
             result: null,
         });
     // Case: There is only a number on the lower screen
-    } else if (!operation.operator && parseLowerScreen()) {
+    } else if (!operation.operator && parseLowerScreen() !== null) {
         updateOperation({
             firstNum: parseLowerScreen(),
         });
     };
     // Finally, update operator if there's a number ready or there's a first but no secondNum
-    if (operation.firstNum && !operation.secondNum || parseLowerScreen()) {
+    if (
+        operation.firstNum !== null &&
+        operation.secondNum === null ||
+        parseLowerScreen() !== null)
+    {
         updateOperation({
             operator: operator,
         });
@@ -90,21 +94,21 @@ function backspaceInput() {
 
 
 function equalsInput() {
-    if (operation.operator === "/" && parseLowerScreen() == "0") {
+    if (operation.operator === "/" && parseLowerScreen() === 0) {
         alert("The universe self-destructs... :(")
 
     } else if (
-        operation.firstNum &&
+        operation.firstNum !== null &&
         operation.operator &&
-        parseLowerScreen() &&
-        !operation.result
+        parseLowerScreen() !== null &&
+        operation.result === null
     ) {
         updateOperation({
             secondNum: parseLowerScreen(),
         });
         computeResult();
 
-    } else if (operation.result) {
+    } else if (operation.result !== null) {
         updateOperation({
             firstNum: operation.result,
         });
@@ -128,6 +132,9 @@ function readLowerScreen() {
 }
 
 function parseLowerScreen() {
+    if (readLowerScreen() === "") {
+        return null;
+    }
     return Number(readLowerScreen());
 }
 
@@ -139,12 +146,12 @@ function updateScreens() {
     ];
     let upperScreenString = "";
     for (let factor of upperScreenFactors) {
-        if (operation[factor]) {
+        if (operation[factor] !== null) {
             upperScreenString += `${operation[factor]} `
         };
     };
-    if (operation.result) {
-        upperScreenString += "= ";
+    if (operation.result !== null) {
+        upperScreenString += "=";
         lowerScreen.textContent = operation.result;
     };
     upperScreen.textContent = upperScreenString;
