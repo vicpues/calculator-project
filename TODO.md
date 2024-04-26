@@ -10,6 +10,7 @@
 - [ ] See if we can unify some comparisons and calls to updateOperation() into their own function, DRY style
 - [ ] Add CSS UI
 - [ ] Round long decimals to fit screen
+- [ ] Adjust display size and max allowed characters
 - [ ] Add keyboard support
 - [ ] Add README.md
 - [ ] Update github description
