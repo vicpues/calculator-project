@@ -2,6 +2,9 @@ body {
   font-weight: bold;
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 90vh;
+  background-color: rgb(208, 255, 155);
 }
 
 .calculator {
@@ -10,6 +13,7 @@ body {
   width: 300px;
   padding: 24px;
   border-radius: 1vw;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .display {
@@ -19,24 +23,22 @@ body {
   padding: 1.5vw;
   border-radius: .5vw;
   margin-bottom: 24px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, .3);
   color: #25283D;
   font-size: 20px;
 }
 
-#upper-display,
-#lower-display {
-  letter-spacing: -.1em;
-}
-
 #upper-display {
+  letter-spacing: -.1em;
   font-size: .75em;
   height: 1em;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
 }
 
 #lower-display {
   font-size: 1.5em;
   height: 1em;
+  letter-spacing: -.15em;
 }
 
 #button-pad {
@@ -89,6 +91,7 @@ button.double-width {
 
 .pale {
   background-color: #d8cfdd;
+  color: #25283D;
 }
 
 .red {
