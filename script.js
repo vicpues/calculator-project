@@ -91,6 +91,8 @@ function clickHandler(e) {
             drawEqualsOutput(button.emits);
             break;
     };
+
+    updateScreens();
 }
 
 
@@ -103,10 +105,14 @@ function drawNumberOutput(number) {
 
 
 function drawOperatorOutput(operator) {
-    if (operation.operator && !readLowerScreen()) {
+    // Case: There is a result on screen
+    if (operation.result) {
         updateOperation({
-            "operator": operator,
+            firstNum: operation.result,
+            secondNum: null,
+            result: null,
         });
+    // Case: There is a firstNum, an operator and a typed number but no result
     } else if (operation.operator && readLowerScreen()) {
         updateOperation({
             secondNum: readLowerScreen(),
@@ -115,17 +121,21 @@ function drawOperatorOutput(operator) {
         updateOperation({
             firstNum: operation.result,
             secondNum: null,
-            "operator": operator,
             result: null,
         });
-    } else {
+    // Case: There is only a number on the lower screen
+    } else if (!operation.operator && readLowerScreen()) {
         updateOperation({
             firstNum: readLowerScreen(),
-            "operator": operator,
         });
     };
-    updateScreens();
-    lowerScreen.textContent = "";
+    // Finally, update operator if there's a number ready or there's a first but no secondNum
+    if (operation.firstNum && !operation.secondNum || readLowerScreen()) {
+        updateOperation({
+            operator: operator,
+        });
+    }
+    clearLowerScreen();
 }
 
 
@@ -146,14 +156,18 @@ function drawEqualsOutput() {
         });
         computeResult();
     };
-    updateScreens();
 }
 
 
 function clearScreens() {
     resetOperation();
     upperScreen.textContent = "";
-    lowerScreen.textContent = "";
+    clearLowerScreen();
+}
+
+
+function clearLowerScreen() {
+    lowerScreen.textContent = ""
 }
 
 
@@ -203,7 +217,7 @@ function computeResult() {
     operation.result = operate(
         operation.firstNum,
         operation.operator,
-        readLowerScreen(),
+        operation.secondNum,
     );
 }
 
