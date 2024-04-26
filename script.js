@@ -7,7 +7,6 @@ function clickHandler(e) {
     
     // Choose which behaviour to activate
     switch (button.type) {
-        
         case "number":
             numberInput(button.emits);
             break;
@@ -15,7 +14,7 @@ function clickHandler(e) {
         case "operator":
             operatorInput(button.emits);
             break;
-            
+
         case "backspace":
             backspaceInput();
             break;
@@ -24,13 +23,13 @@ function clickHandler(e) {
             clearScreens();
             break;
 
-            case "equals":
-                equalsInput();
-                break;
-            };
-            
-            updateScreens();
-        }
+        case "equals":
+            equalsInput();
+            break;
+        };
+        
+    updateScreens();
+}
         
         
 function numberInput(number) {
@@ -113,21 +112,17 @@ function clearScreens() {
     clearLowerScreen();
 }
 
-
 function clearLowerScreen() {
     lowerScreen.textContent = ""
 }
-
 
 function readLowerScreen() {
     return lowerScreen.textContent;
 }
 
-
 function parseLowerScreen() {
     return Number(readLowerScreen());
 }
-
 
 function updateScreens() {
     let upperScreenFactors = [
@@ -155,7 +150,6 @@ function updateOperation(obj) {
     }
 }
 
-
 function resetOperation() {
     operation = {
         firstNum: null,
@@ -164,7 +158,6 @@ function resetOperation() {
         result: null,
     };
 }
-
 
 function computeResult() {
     operation.result = operate(
@@ -176,7 +169,6 @@ function computeResult() {
 
 
 function operate(firstNum, operator, secondNum) {
-
     switch (operator) {
         case "+":
             return add(firstNum, secondNum);
@@ -190,7 +182,6 @@ function operate(firstNum, operator, secondNum) {
             console.log("Error: either the operator or the numbers are not valid");
     };
 }
-
 
 function add(a, b) {
     return a + b;
