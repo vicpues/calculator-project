@@ -72,15 +72,15 @@ function clickHandler(e) {
     switch (button.type) {
         
         case "number":
-            drawNumberOutput(button.emits);
+            numberInput(button.emits);
             break;
 
         case "operator":
-            drawOperatorOutput(button.emits);
+            operatorInput(button.emits);
             break;
 
         case "backspace":
-            drawBackspaceOutput();
+            backspaceInput();
             break;
 
         case "clear":
@@ -88,7 +88,7 @@ function clickHandler(e) {
             break;
 
         case "equals":
-            drawEqualsOutput(button.emits);
+            equalsInput();
             break;
     };
 
@@ -96,7 +96,7 @@ function clickHandler(e) {
 }
 
 
-function drawNumberOutput(number) {
+function numberInput(number) {
     if (operation.result) {
         clearScreens();
     }
@@ -104,7 +104,7 @@ function drawNumberOutput(number) {
 }
 
 
-function drawOperatorOutput(operator) {
+function operatorInput(operator) {
     // Case: There is a result on screen
     if (operation.result) {
         updateOperation({
@@ -139,12 +139,12 @@ function drawOperatorOutput(operator) {
 }
 
 
-function drawBackspaceOutput() {
+function backspaceInput() {
     lowerScreen.textContent = lowerScreen.textContent.slice(0, -1);
 }
 
 
-function drawEqualsOutput() {
+function equalsInput() {
     if (
         operation.firstNum &&
         operation.operator &&
