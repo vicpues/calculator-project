@@ -59,15 +59,19 @@ function operatorInput(operator) {
         });
     // Case: There is a firstNum, an operator and a typed number but no result
     } else if (operation.operator && parseLowerScreen() !== null) {
-        updateOperation({
-            secondNum: parseLowerScreen(),
-        });
-        computeResult();
-        updateOperation({
-            firstNum: operation.result,
-            secondNum: null,
-            result: null,
-        });
+        if (operation.operator === "/" && parseLowerScreen() === 0) {
+            zeroDivisionAlert();
+        } else {
+            updateOperation({
+                secondNum: parseLowerScreen(),
+            });
+            computeResult();
+            updateOperation({
+                firstNum: operation.result,
+                secondNum: null,
+                result: null,
+            });
+        }
     // Case: There is only a number on the lower screen
     } else if (!operation.operator && parseLowerScreen() !== null) {
         updateOperation({
@@ -96,7 +100,7 @@ function backspaceInput() {
 
 function equalsInput() {
     if (operation.operator === "/" && parseLowerScreen() === 0) {
-        alert("The universe self-destructs... :(");
+        zeroDivisionAlert();
 
     } else if (
         operation.firstNum !== null &&
@@ -115,6 +119,10 @@ function equalsInput() {
         });
         computeResult();
     };
+}
+
+function zeroDivisionAlert() {
+    alert("The universe self-destructs... :(");
 }
 
 

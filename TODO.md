@@ -6,7 +6,7 @@
 - [x] Clear both screen and {operation} when user presses "CL"
 - [x] Make use case for when the user divides by zero
 - [x] Make sure user can't enter more than one dot for floating point numbers
-- [ ] Add dividing by zero clause to operator function
+- [x] Add dividing by zero clause to operator function
 - [ ] See if we can unify some comparisons and calls to updateOperation() into their own function, DRY style
 - [ ] Add CSS UI
 - [ ] Round long decimals to fit screen
