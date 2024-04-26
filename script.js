@@ -53,7 +53,7 @@ const buttonMap = {
     "divide-button":    {emits:"/",  type:"operator" },
     "backspace-button": {emits:null, type:"backspace"},
     "clear-button":     {emits:null, type:"clear"    },
-    "equals-button":    {emits:"=",  type:"equals"   },
+    "equals-button":    {emits:null, type:"equals"   },
 };
 
 const buttonPad = document.querySelector("#button-pad");
