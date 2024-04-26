@@ -40,7 +40,7 @@ function numberInput(number) {
     if (number === ".") {
         if (!readLowerScreen()) {
             lowerScreen.textContent += "0.";
-        } else if (!readLowerScreen().contains(".")) {
+        } else if (!readLowerScreen().includes(".")) {
             lowerScreen.textContent += number;
         };
     } else {
