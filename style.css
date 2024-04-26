@@ -1,5 +1,5 @@
 body {
-  font-family: monospace;
+  font-family: sans-serif;
   font-weight: bold;
   display: flex;
   justify-content: center;
@@ -19,14 +19,19 @@ body {
   padding: 1.5vw;
   border-radius: .5vw;
   margin-bottom: 24px;
+  color: #25283D;
+  font-size: 40px;
 }
 
 #upper-display {
-  font-size: 3.5vw;
+  font-size: .75em;
+  height: 1em;
+  margin-bottom: 10px;
 }
 
 #lower-display {
-  font-size: 6vw;
+  font-size: 1.5em;
+  height: 60px;
 }
 
 #button-pad {
@@ -44,16 +49,44 @@ body {
   flex-wrap: wrap;
 }
 
-#button-pad > div > button {
+.button-column > button {
   height: 40px;
   flex-grow: 1;
   box-sizing: border-box;
   width: 40%;
+  font-family: monospace;
+  font-size: 24px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .3);
 
   border: none;
   border-radius: 3px;
+  cursor: pointer;
+  transition: 50ms;
 }
 
-#button-pad button.double-width {
+button.double-width {
   width: 100%;
+}
+
+.button-column > button:hover {
+  border: 2px solid white;
+}
+
+.button-column > button:active {
+  border: 2px solid white;
+  scale: 95%;
+}
+
+.grey {
+  background-color: #39354e;
+  color: #f3ebeb;
+}
+
+.pale {
+  background-color: #d8cfdd;
+}
+
+.red {
+  background-color: #ad3924;
+  color: #f3ebeb;
 }
