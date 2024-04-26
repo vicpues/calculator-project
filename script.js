@@ -18,7 +18,7 @@ function clickHandler(e) {
         case "backspace":
             backspaceInput();
             break;
-            
+
         case "clear":
             clearScreens();
             break;
@@ -92,6 +92,7 @@ function backspaceInput() {
 function equalsInput() {
     if (operation.operator === "/" && parseLowerScreen() == "0") {
         alert("The universe self-destructs... :(")
+
     } else if (
         operation.firstNum &&
         operation.operator &&
@@ -100,6 +101,12 @@ function equalsInput() {
     ) {
         updateOperation({
             secondNum: parseLowerScreen(),
+        });
+        computeResult();
+
+    } else if (operation.result) {
+        updateOperation({
+            firstNum: operation.result,
         });
         computeResult();
     };
