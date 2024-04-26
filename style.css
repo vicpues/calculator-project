@@ -1,0 +1,30 @@
+body {
+  font-family: monospace;
+  font-weight: bold;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.calculator {
+  display: inline-block;
+  background-color: #44B097;
+  width: 300px;
+  padding: 1vw;
+  border-radius: 1vw;
+}
+
+.display {
+  background-color: #AFF5BF;
+  text-align: right;
+  padding: 1.5vw;
+  border-radius: .5vw;
+}
+
+#upper-display {
+  font-size: 3.5vw;
+}
+
+#lower-display {
+  font-size: 6vw;
+}
