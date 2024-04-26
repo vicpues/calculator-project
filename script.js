@@ -36,24 +36,24 @@ function operate(firstNum, operator, secondNum) {
 
 
 const buttonMap = {
-    "one-button":       {emits:"1",  type:"number"},
-    "two-button":       {emits:"2",  type:"number"},
-    "three-button":     {emits:"3",  type:"number"},
-    "four-button":      {emits:"4",  type:"number"},
-    "five-button":      {emits:"5",  type:"number"},
-    "six-button":       {emits:"6",  type:"number"},
-    "seven-button":     {emits:"7",  type:"number"},
-    "eight-button":     {emits:"8",  type:"number"},
-    "nine-button":      {emits:"9",  type:"number"},
-    "zero-button":      {emits:"0",  type:"number"},
-    "dot-button":       {emits:".",  type:"number"},
-    "add-button":       {emits:"+",  type:"operator"},
-    "subtract-button":  {emits:"-",  type:"operator"},
-    "multiply-button":  {emits:"*",  type:"operator"},
-    "divide-button":    {emits:"/",  type:"operator"},
+    "one-button":       {emits:"1",  type:"number"   },
+    "two-button":       {emits:"2",  type:"number"   },
+    "three-button":     {emits:"3",  type:"number"   },
+    "four-button":      {emits:"4",  type:"number"   },
+    "five-button":      {emits:"5",  type:"number"   },
+    "six-button":       {emits:"6",  type:"number"   },
+    "seven-button":     {emits:"7",  type:"number"   },
+    "eight-button":     {emits:"8",  type:"number"   },
+    "nine-button":      {emits:"9",  type:"number"   },
+    "zero-button":      {emits:"0",  type:"number"   },
+    "dot-button":       {emits:".",  type:"number"   },
+    "add-button":       {emits:"+",  type:"operator" },
+    "subtract-button":  {emits:"-",  type:"operator" },
+    "multiply-button":  {emits:"*",  type:"operator" },
+    "divide-button":    {emits:"/",  type:"operator" },
     "backspace-button": {emits:null, type:"backspace"},
-    "clear-button":     {emits:null, type:"clear"},
-    "equals-button":    {emits:"=",  type:"equals"},
+    "clear-button":     {emits:null, type:"clear"    },
+    "equals-button":    {emits:"=",  type:"equals"   },
 };
 
 const buttonPad = document.querySelector("#button-pad");
@@ -69,7 +69,6 @@ function clickHandler(e) {
     if (button === null) {return};
 
     // Choose which behaviour to activate
-    updateOperation()
     switch (button.type) {
         
         case "number":
@@ -95,16 +94,37 @@ function clickHandler(e) {
 }
 
 
-function drawNumberOutput(text) {
-    if (operation.hasEquals) {
+function drawNumberOutput(number) {
+    if (operation.result) {
         clearScreens();
     }
-    lowerScreen.textContent += text;
+    lowerScreen.textContent += number;
 }
 
 
-function drawOperatorOutput(text) {
-    upperScreen.textContent = `${lowerScreen.textContent} ${text}`;
+function drawOperatorOutput(operator) {
+    if (operation.operator && !readLowerScreen()) {
+        updateOperation({
+            "operator": operator,
+        });
+    } else if (operation.operator && readLowerScreen()) {
+        updateOperation({
+            secondNum: readLowerScreen(),
+        })
+        computeResult();
+        updateOperation({
+            firstNum: operation.result,
+            secondNum: null,
+            "operator": operator,
+            result: null,
+        });
+    } else {
+        updateOperation({
+            firstNum: readLowerScreen(),
+            "operator": operator,
+        });
+    };
+    updateScreens();
     lowerScreen.textContent = "";
 }
 
@@ -114,36 +134,81 @@ function drawBackspaceOutput() {
 }
 
 
-function drawEqualsOutput(text) {
-    upperScreen.textContent = 
-        `${operation.firstNum} ` +
-        `${operation.operator} ` +
-        `${operation.secondNum} ` +
-        `${text} `
-    lowerScreen.textContent = operate(
-        operation.firstNum,
-        operation.operator,
-        operation.secondNum);
+function drawEqualsOutput() {
+    if (
+        operation.firstNum &&
+        operation.operator &&
+        !operation.secondNum &&
+        !operation.result
+    ) {
+        updateOperation({
+            secondNum: readLowerScreen(),
+        });
+        computeResult();
+    };
+    updateScreens();
 }
 
 
 function clearScreens() {
+    resetOperation();
     upperScreen.textContent = "";
     lowerScreen.textContent = "";
 }
 
 
-function updateOperation() {
-    let upperScreenArr = upperScreen.textContent.split(" ");
+function resetOperation() {
     operation = {
-        firstNum: Number(upperScreenArr[0]),
-        operator: upperScreenArr[1],
-        secondNum: Number(lowerScreen.textContent),
-        hasEquals: (upperScreenArr.slice(-1)[0] === "="),
+        firstNum: null,
+        operator: null,
+        secondNum: null,
+        result: null,
     };
+}
+
+
+function readLowerScreen() {
+    return Number(lowerScreen.textContent)
+}
+
+
+function updateScreens() {
+    let upperScreenFactors = [
+        "firstNum",
+        "operator",
+        "secondNum",
+    ];
+    let upperScreenString = "";
+    for (let factor of upperScreenFactors) {
+        if (operation[factor]) {
+            upperScreenString += `${operation[factor]} `
+        };
+    };
+    if (operation.result) {
+        upperScreenString += "= ";
+        lowerScreen.textContent = operation.result;
+    };
+    upperScreen.textContent = upperScreenString;
+}
+
+
+function updateOperation(obj) {
+    for (let factor in obj) {
+        operation[factor] = obj[factor];
+    }
+}
+
+
+function computeResult() {
+    operation.result = operate(
+        operation.firstNum,
+        operation.operator,
+        readLowerScreen(),
+    );
 }
 
 
 const upperScreen = document.querySelector("#upper-display");
 const lowerScreen = document.querySelector("#lower-display");
 let operation;
+resetOperation();
