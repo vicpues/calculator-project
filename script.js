@@ -3,7 +3,7 @@ function clickHandler(e) {
     let button = (e.target.tagName === "BUTTON")
         ? buttonMap[e.target.id]
         : null;
-    if (button === null) {return};
+    if (button === null) {return;};
     
     // Choose which behaviour to activate
     switch (button.type) {
@@ -61,7 +61,7 @@ function operatorInput(operator) {
     } else if (operation.operator && parseLowerScreen() !== null) {
         updateOperation({
             secondNum: parseLowerScreen(),
-        })
+        });
         computeResult();
         updateOperation({
             firstNum: operation.result,
@@ -84,6 +84,7 @@ function operatorInput(operator) {
             operator: operator,
         });
     }
+
     clearLowerScreen();
 }
 
@@ -95,7 +96,7 @@ function backspaceInput() {
 
 function equalsInput() {
     if (operation.operator === "/" && parseLowerScreen() === 0) {
-        alert("The universe self-destructs... :(")
+        alert("The universe self-destructs... :(");
 
     } else if (
         operation.firstNum !== null &&
@@ -124,7 +125,7 @@ function clearScreens() {
 }
 
 function clearLowerScreen() {
-    lowerScreen.textContent = ""
+    lowerScreen.textContent = "";
 }
 
 function readLowerScreen() {
@@ -139,21 +140,24 @@ function parseLowerScreen() {
 }
 
 function updateScreens() {
+    let upperScreenString = "";
     let upperScreenFactors = [
         "firstNum",
         "operator",
         "secondNum",
     ];
-    let upperScreenString = "";
+    
     for (let factor of upperScreenFactors) {
         if (operation[factor] !== null) {
-            upperScreenString += `${operation[factor]} `
+            upperScreenString += `${operation[factor]} `;
         };
     };
+
     if (operation.result !== null) {
         upperScreenString += "=";
         lowerScreen.textContent = operation.result;
     };
+
     upperScreen.textContent = upperScreenString;
 }
 
@@ -161,7 +165,7 @@ function updateScreens() {
 function updateOperation(obj) {
     for (let factor in obj) {
         operation[factor] = obj[factor];
-    }
+    };
 }
 
 function resetOperation() {
