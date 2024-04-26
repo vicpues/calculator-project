@@ -200,7 +200,7 @@ function operate(firstNum, operator, secondNum) {
             return add(firstNum, secondNum);
         case "-":
             return subtract(firstNum, secondNum);
-        case "*":
+        case "x":
             return multiply(firstNum, secondNum);
         case "/":
             return divide(firstNum, secondNum);   
@@ -240,7 +240,7 @@ const buttonMap = {
     "dot-button":       {emits:".",  type:"number"   },
     "add-button":       {emits:"+",  type:"operator" },
     "subtract-button":  {emits:"-",  type:"operator" },
-    "multiply-button":  {emits:"*",  type:"operator" },
+    "multiply-button":  {emits:"x",  type:"operator" },
     "divide-button":    {emits:"/",  type:"operator" },
     "backspace-button": {emits:null, type:"backspace"},
     "clear-button":     {emits:null, type:"clear"    },

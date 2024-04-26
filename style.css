@@ -15,12 +15,17 @@ body {
 .display {
   background-color: #AFF5BF;
   text-align: right;
-  font-family: 'Seven Segment', monospace, sans-serif;
+  font-family: 'Scientific Calculator LCD', sans-serif;
   padding: 1.5vw;
   border-radius: .5vw;
   margin-bottom: 24px;
   color: #25283D;
-  font-size: 40px;
+  font-size: 20px;
+}
+
+#upper-display,
+#lower-display {
+  letter-spacing: -.1em;
 }
 
 #upper-display {
@@ -31,7 +36,7 @@ body {
 
 #lower-display {
   font-size: 1.5em;
-  height: 60px;
+  height: 1em;
 }
 
 #button-pad {
