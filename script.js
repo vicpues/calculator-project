@@ -146,6 +146,10 @@ function backspaceInput() {
 
 function equalsInput() {
     if (
+        operation.operator === "/" && 
+        readLowerScreen() == "0") {
+        alert("The universe self-destructs... :(")
+    } else if (
         operation.firstNum &&
         operation.operator &&
         readLowerScreen() &&
