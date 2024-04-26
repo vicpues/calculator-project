@@ -148,7 +148,7 @@ function equalsInput() {
     if (
         operation.firstNum &&
         operation.operator &&
-        !operation.secondNum &&
+        readLowerScreen() &&
         !operation.result
     ) {
         updateOperation({
