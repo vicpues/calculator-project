@@ -1,5 +1,4 @@
 body {
-  font-family: sans-serif;
   font-weight: bold;
   display: flex;
   justify-content: center;
@@ -16,6 +15,7 @@ body {
 .display {
   background-color: #AFF5BF;
   text-align: right;
+  font-family: 'Seven Segment', monospace, sans-serif;
   padding: 1.5vw;
   border-radius: .5vw;
   margin-bottom: 24px;
