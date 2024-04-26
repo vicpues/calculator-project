@@ -99,8 +99,17 @@ function clickHandler(e) {
 function numberInput(number) {
     if (operation.result) {
         clearScreens();
-    }
-    lowerScreen.textContent += number;
+    };
+
+    if (number === ".") {
+        if (!readLowerScreen()) {
+            lowerScreen.textContent += "0.";
+        } else if (!readLowerScreen().contains(".")) {
+            lowerScreen.textContent += number;
+        };
+    } else {
+        lowerScreen.textContent += number;
+    };
 }
 
 
@@ -113,9 +122,9 @@ function operatorInput(operator) {
             result: null,
         });
     // Case: There is a firstNum, an operator and a typed number but no result
-    } else if (operation.operator && readLowerScreen()) {
+    } else if (operation.operator && parseLowerScreen()) {
         updateOperation({
-            secondNum: readLowerScreen(),
+            secondNum: parseLowerScreen(),
         })
         computeResult();
         updateOperation({
@@ -124,13 +133,13 @@ function operatorInput(operator) {
             result: null,
         });
     // Case: There is only a number on the lower screen
-    } else if (!operation.operator && readLowerScreen()) {
+    } else if (!operation.operator && parseLowerScreen()) {
         updateOperation({
-            firstNum: readLowerScreen(),
+            firstNum: parseLowerScreen(),
         });
     };
     // Finally, update operator if there's a number ready or there's a first but no secondNum
-    if (operation.firstNum && !operation.secondNum || readLowerScreen()) {
+    if (operation.firstNum && !operation.secondNum || parseLowerScreen()) {
         updateOperation({
             operator: operator,
         });
@@ -147,16 +156,16 @@ function backspaceInput() {
 function equalsInput() {
     if (
         operation.operator === "/" && 
-        readLowerScreen() == "0") {
+        parseLowerScreen() == "0") {
         alert("The universe self-destructs... :(")
     } else if (
         operation.firstNum &&
         operation.operator &&
-        readLowerScreen() &&
+        parseLowerScreen() &&
         !operation.result
     ) {
         updateOperation({
-            secondNum: readLowerScreen(),
+            secondNum: parseLowerScreen(),
         });
         computeResult();
     };
@@ -186,7 +195,12 @@ function resetOperation() {
 
 
 function readLowerScreen() {
-    return Number(lowerScreen.textContent)
+    return lowerScreen.textContent;
+}
+
+
+function parseLowerScreen() {
+    return Number(readLowerScreen());
 }
 
 
