@@ -11,7 +11,7 @@
 - [x] Add CSS UI
 - [x] Adjust display size and max allowed characters
 - [x] Round long decimals to fit screen
-- [ ] Add keyboard support
+- [x] Add keyboard support
 - [ ] Add README.md
 - [ ] Update github description
 - [ ] Add credits and link to github
