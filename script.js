@@ -1,23 +1,16 @@
-function clickHandler(e) {
-    // Handle clicks outside of a button
-    let button = (e.target.tagName === "BUTTON")
-        ? buttonMap[e.target.id]
-        : null;
-    if (button === null) {return;};
-
+function inputHandler(symbol) {
     // Reset calculator if frozen
     if (calculatorIsFrozen) {
         resetCalculator();
     }
-    
-    // Choose which behaviour to activate
-    switch (button.type) {
+        
+    switch (symbol.type) {
         case "number":
-            numberInput(button.emits);
+            numberInput(symbol.emits);
             break;
 
         case "operator":
-            operatorInput(button.emits);
+            operatorInput(symbol.emits);
             break;
 
         case "backspace":
@@ -31,13 +24,30 @@ function clickHandler(e) {
         case "equals":
             equalsInput();
             break;
-        };
+    };
         
     shortenDecimals();
     updateScreens();
     numberTooLargeCheck();
 }
-        
+
+function clickHandler(e) {
+    // Handle clicks outside of a button
+    let button = (e.target.tagName === "BUTTON")
+        ? buttonMap[e.target.id]
+        : null;
+    if (button === null) {return;};
+
+    inputHandler(button);
+}
+
+function keyHandler(e) {
+    if (e.key in keyMap) {
+        let matchingButton = keyMap[e.key];
+        inputHandler(buttonMap[matchingButton]);
+    };
+}
+
         
 function numberInput(number) {
     if (operation.result !== null) {
@@ -306,8 +316,31 @@ const buttonMap = {
     "equals-button":    {emits:null, type:"equals"   },
 };
 
+const keyMap = {
+            "1": "one-button",
+            "2": "two-button",
+            "3": "three-button",
+            "4": "four-button",
+            "5": "five-button",
+            "6": "six-button",
+            "7": "seven-button",
+            "8": "eight-button",
+            "9": "nine-button",
+            "0": "zero-button",
+            ".": "dot-button",
+            "+": "add-button",
+            "-": "subtract-button",
+            "*": "multiply-button",
+            "/": "divide-button",
+    "Backspace": "backspace-button",
+            "c": "clear-button",
+            "=": "equals-button",
+        "Enter": "equals-button",
+};
+
 const buttonPad = document.querySelector("#button-pad");
 buttonPad.addEventListener("click", (e) => clickHandler(e));
+document.addEventListener("keydown", (e) => keyHandler(e));
 
 const upperScreen = document.querySelector("#upper-display");
 const lowerScreen = document.querySelector("#lower-display");
