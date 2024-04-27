@@ -14,5 +14,6 @@
 - [ ] Add keyboard support
 - [ ] Add README.md
 - [ ] Update github description
+- [ ] Add credits and link to github
 - [ ] Make project public?? teehee
 
