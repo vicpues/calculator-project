@@ -33,6 +33,7 @@ function clickHandler(e) {
             break;
         };
         
+    shortenDecimals();
     updateScreens();
     numberTooLargeCheck();
 }
@@ -226,7 +227,28 @@ function numberTooLargeCheck() {
     ) {
         resetOperation();
         lowerScreen.textContent = "Too Large";
-        calculatorIsFrozen = true
+        calculatorIsFrozen = true;
+    };
+}
+
+function shortenDecimals() {
+    let numberFactors = [
+        "firstNum",
+        "secondNum",
+        "result",
+    ];
+    for (let factor of numberFactors) {
+        let value = operation[factor];
+        let string = String(value);
+        if (
+            value !== null &&
+            string.length >= maxCharsOnScreen && 
+            string.includes(".")
+        ) {
+            let wholeNumberLength = String(Math.round(value)).length;
+            let allowedDecimals = (maxCharsOnScreen - 1) - wholeNumberLength;
+            operation[factor] = +value.toFixed(allowedDecimals);
+        };
     };
 }
 
