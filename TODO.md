@@ -9,7 +9,7 @@
 - [x] Add dividing by zero clause to operator function
 - [ ] See if we can unify some comparisons and calls to updateOperation() into their own function, DRY style
 - [x] Add CSS UI
-- [ ] Adjust display size and max allowed characters
+- [x] Adjust display size and max allowed characters
 - [ ] Round long decimals to fit screen
 - [ ] Add keyboard support
 - [ ] Add README.md

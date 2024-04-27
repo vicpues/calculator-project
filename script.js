@@ -4,6 +4,11 @@ function clickHandler(e) {
         ? buttonMap[e.target.id]
         : null;
     if (button === null) {return;};
+
+    // Reset calculator if frozen
+    if (calculatorIsFrozen) {
+        resetCalculator();
+    }
     
     // Choose which behaviour to activate
     switch (button.type) {
@@ -29,6 +34,7 @@ function clickHandler(e) {
         };
         
     updateScreens();
+    numberTooLargeCheck();
 }
         
         
@@ -36,6 +42,10 @@ function numberInput(number) {
     if (operation.result !== null) {
         clearScreens();
     };
+
+    if (lowerScreen.isFull) {
+        return;
+    }
     
     if (number === ".") {
         if (!readLowerScreen()) {
@@ -166,6 +176,15 @@ function updateScreens() {
         lowerScreen.textContent = operation.result;
     };
 
+    if (
+        readLowerScreen() !== null &&
+        readLowerScreen().length >= maxCharsOnScreen
+    ) {
+        lowerScreen.isFull = true
+    } else {
+        lowerScreen.isFull = false;
+    }
+
     upperScreen.textContent = upperScreenString;
 }
 
@@ -191,6 +210,24 @@ function computeResult() {
         operation.operator,
         operation.secondNum,
     );
+}
+
+function resetCalculator() {
+    calculatorIsFrozen = false;
+    resetOperation();
+    lowerScreen.textContent = "";
+    updateScreens();
+}
+
+function numberTooLargeCheck() {
+    if (
+        readLowerScreen() !== null &&
+        readLowerScreen().length > maxCharsOnScreen
+    ) {
+        resetOperation();
+        lowerScreen.textContent = "Too Large";
+        calculatorIsFrozen = true
+    };
 }
 
 
@@ -252,5 +289,8 @@ buttonPad.addEventListener("click", (e) => clickHandler(e));
 
 const upperScreen = document.querySelector("#upper-display");
 const lowerScreen = document.querySelector("#lower-display");
+lowerScreen.isFull = false;
+let calculatorIsFrozen = false;
+const maxCharsOnScreen = 10;
 let operation;
 resetOperation();
