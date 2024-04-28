@@ -1,6 +1,7 @@
 body {
   font-weight: bold;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 90vh;
@@ -8,12 +9,13 @@ body {
 }
 
 .calculator {
-  display: inline-block;
+  display: block;
   background-color: #44B097;
   width: 330px;
   padding: 24px;
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 70px;
 }
 
 .display {
@@ -97,4 +99,24 @@ button.double-width {
 .red {
   background-color: #ad3924;
   color: #f3ebeb;
+}
+
+.github-links {
+  display: block;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #39354e;
+}
+
+.github-links > span {
+  margin: 0 12px;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  color: #39354e;
+}
+
+a.repo-link:hover {
+  text-decoration: underline;
 }
