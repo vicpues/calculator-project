@@ -1,75 +1,85 @@
 body {
-  font-weight: bold;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   height: 90vh;
+
   background-color: #d1ff9c;
+  font-weight: bold;
 }
 
 .calculator {
   display: block;
-  background-color: #44B097;
+  
   width: 330px;
-  padding: 24px;
-  border-radius: 10px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   margin-bottom: 70px;
+  border-radius: 10px;
+  padding: 24px;
+  
+  background-color: #44B097;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .display {
-  background-color: #AFF5BF;
-  text-align: right;
-  font-family: 'Scientific Calculator LCD', sans-serif;
-  padding: 30px 15px;
-  border-radius: 5px;
   margin-bottom: 38px;
+  padding: 30px 15px;
+  background-color: #AFF5BF;
+  border-radius: 5px;
+
   box-shadow: inset 0 0 5px rgba(0, 0, 0, .3);
-  color: #3c3f55;
   font-size: 20px;
+  font-family: 'Scientific Calculator LCD', sans-serif;
+  color: #3c3f55;
+  text-align: right;
 }
 
 #upper-display {
-  letter-spacing: -.1em;
-  font-size: .75em;
   height: 1em;
   margin-bottom: 24px;
+
+  font-size: .75em;
+  letter-spacing: -.1em;
 }
 
 #lower-display {
-  font-size: 1.5em;
   height: 1em;
+
+  font-size: 1.5em;
   letter-spacing: -.15em;
 }
 
 #button-pad {
   display: flex;
-  
   gap: 10px;
+
   width: 100%;
 }
 
 #button-pad > div {
-  width: 100%;
   display: flex;
   flex-direction: row;
-  gap: inherit;
   flex-wrap: wrap;
+  gap: inherit;
+
+  width: 100%;
 }
 
 .button-column > button {
-  height: 40px;
   flex-grow: 1;
   box-sizing: border-box;
-  width: 40%;
-  font-family: monospace;
-  font-size: 24px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, .3);
 
+  width: 40%;
+  height: 40px;
+  cursor: pointer;
   border: none;
   border-radius: 3px;
-  cursor: pointer;
+  
+  box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+  font-size: 24px;
+  font-family: monospace;
+
   transition: 50ms;
 }
 
@@ -82,8 +92,8 @@ button.double-width {
 }
 
 .button-column > button:active {
-  border: 2px solid white;
   scale: 95%;
+  border: 2px solid white;
 }
 
 .grey {
@@ -113,8 +123,8 @@ button.double-width {
 
 a:link,
 a:visited {
-  text-decoration: none;
   color: #39354e;
+  text-decoration: none;
 }
 
 a.repo-link:hover {
