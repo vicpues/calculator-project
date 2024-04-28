@@ -12,8 +12,7 @@
 - [x] Adjust display size and max allowed characters
 - [x] Round long decimals to fit screen
 - [x] Add keyboard support
-- [ ] Add credits and link to github
-- [ ] Add README.md
+- [x] Add credits and link to github
+- [ ] Add full README.md
 - [ ] Update github description
-- [ ] Make project public?? teehee
-
+- [ ] Make project public and publish page?? teehee
