@@ -118,7 +118,11 @@ button.double-width {
 }
 
 .github-links > span {
-  margin: 0 12px;
+  margin: 0 2px;
+}
+
+.github-links > a {
+  padding: 10px;
 }
 
 a:link,
