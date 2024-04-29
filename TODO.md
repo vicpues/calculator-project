@@ -16,3 +16,4 @@
 - [ ] Add full README.md
 - [ ] Update github description
 - [ ] Make project public and publish page?? teehee
+- [ ] Delete this TODO.md file
