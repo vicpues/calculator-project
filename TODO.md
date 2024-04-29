@@ -13,7 +13,7 @@
 - [x] Round long decimals to fit screen
 - [x] Add keyboard support
 - [x] Add credits and link to github
-- [ ] Add full README.md
-- [ ] Update github description
-- [ ] Make project public and publish page?? teehee
+- [x] Add full README.md
+- [x] Update github description
+- [ ] Publish page and link live view on readme
 - [ ] Delete this TODO.md file
