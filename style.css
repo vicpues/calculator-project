@@ -7,7 +7,6 @@ body {
   height: 90vh;
 
   background-color: #d1ff9c;
-  font-weight: bold;
 }
 
 .calculator {
@@ -31,6 +30,7 @@ body {
   box-shadow: inset 0 0 5px rgba(0, 0, 0, .3);
   font-size: 20px;
   font-family: 'Scientific Calculator LCD', sans-serif;
+  font-weight: bold;
   color: #3c3f55;
   text-align: right;
 }
@@ -51,43 +51,31 @@ body {
 }
 
 #button-pad {
-  display: flex;
-  gap: 10px;
-
-  width: 100%;
-}
-
-#button-pad > div {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: inherit;
-
+  table-layout:fixed;
+  border-collapse: collapse;
   width: 100%;
 }
 
 #button-pad td {
-  flex-grow: 1;
   box-sizing: border-box;
-
-  width: 40%;
   height: 40px;
   cursor: pointer;
   border: none;
   border-radius: 3px;
   
   box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+  text-align: center;
   font-size: 24px;
   font-family: monospace;
 
   transition: 50ms;
 }
 
-.button-column > button:hover {
+#button-pad td:hover {
   border: 2px solid white;
 }
 
-.button-column > button:active {
+#button-pad td:active {
   scale: 95%;
   border: 2px solid white;
 }
@@ -110,6 +98,7 @@ body {
 .github-links {
   display: block;
   font-family: Helvetica, Arial, sans-serif;
+  font-weight: bold;
   color: #39354e;
 }
 

@@ -33,7 +33,7 @@ function inputHandler(symbol) {
 
 function clickHandler(e) {
     // Handle clicks outside of a button
-    let button = (e.target.tagName === "BUTTON")
+    let button = (e.target.tagName === "TD")
         ? buttonMap[e.target.id]
         : null;
     if (button === null) {return;};
