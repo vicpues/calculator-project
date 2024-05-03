@@ -66,7 +66,7 @@ body {
   width: 100%;
 }
 
-.button-column > button {
+#button-pad td {
   flex-grow: 1;
   box-sizing: border-box;
 
@@ -81,10 +81,6 @@ body {
   font-family: monospace;
 
   transition: 50ms;
-}
-
-button.double-width {
-  width: 100%;
 }
 
 .button-column > button:hover {
