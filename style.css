@@ -9,7 +9,7 @@ body {
   background-color: #d1ff9c;
 }
 
-.calculator {
+#calculator {
   display: block;
   position: relative;
   
@@ -22,7 +22,7 @@ body {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
-.display {
+#display {
   margin-bottom: 38px;
   padding: 30px 15px;
   background-color: #AFF5BF;
@@ -100,18 +100,18 @@ body {
   color: #f3ebeb;
 }
 
-.github-links {
+#github-links {
   display: block;
   font-family: Helvetica, Arial, sans-serif;
   font-weight: bold;
   color: #39354e;
 }
 
-.github-links > span {
+#github-links > span {
   margin: 0 2px;
 }
 
-.github-links > a {
+#github-links > a {
   padding: 10px;
 }
 
@@ -121,6 +121,6 @@ a:visited {
   text-decoration: none;
 }
 
-a.repo-link:hover {
+a#repo-link:hover {
   text-decoration: underline;
 }
