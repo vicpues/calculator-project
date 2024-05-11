@@ -52,12 +52,12 @@ body {
 }
 
 #button-pad {
-  --button-gap: 10px;
   table-layout:fixed;
+  /* it's 2024 and this is the only way to remove the outer spacing around a table*/
+  --button-gap: 10px;
   border-spacing: var(--button-gap);
   margin: calc(-1 * var(--button-gap));
   width: calc(330px + 2 * var(--button-gap));
-  /* it's 2024 and this is the only way to remove the outer spacing around a table*/
 }
 
 #button-pad td {
