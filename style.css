@@ -76,13 +76,13 @@ body {
   transition: 50ms;
 }
 
-#button-pad td:hover {
+#button-pad td:hover,
+#button-pad td:active {
   border: 2px solid white;
 }
 
 #button-pad td:active {
   scale: 95%;
-  border: 2px solid white;
 }
 
 .grey {
